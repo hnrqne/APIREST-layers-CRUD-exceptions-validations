@@ -22,4 +22,11 @@ public class ClientService {
 		Client client = repository.findById(id).get();
 		return new ClientDTO(client);
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<ClientDTO> findAll(Pageable pageable) {
+		
+		Page<Client> result = repository.findAll(pageable);
+		return result.map(x -> new ClientDTO(x));
+	}
 }
