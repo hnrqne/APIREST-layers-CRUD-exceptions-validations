@@ -4,13 +4,22 @@ import java.time.LocalDate;
 
 import com.hnrqne.crudclient.entities.Client;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+
 public class ClientDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "não pode ser vazio")
 	private String name;
+	
 	private String cpf;
 	private Double income;
+	
+	@PastOrPresent(message = "não pode ser data futura")
 	private LocalDate birthDate;
+	
 	private Integer children;
 	
 	public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
